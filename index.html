@@ -29,12 +29,14 @@
       align-items: center;
       justify-content: flex-start;
       text-align: center;
-      padding: 0.6rem; 
+      padding: 0.6rem;
       position: relative;
       overflow-y: auto;
       overscroll-behavior: auto;
       touch-action: auto;
+      background-color: #000; /* ⬅️ Set black background initially */
     }
+
 
     body::before {
       content: "";
@@ -48,7 +50,15 @@
       background-position: center;
       filter: blur(7px) brightness(0.6);
       z-index: -1;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out; /* smoother fade-in */
     }
+
+
+    body.image-loaded::before {
+      opacity: 1;
+    }
+
 
     h1 {
       font-size: 3.0rem;
@@ -130,7 +140,7 @@
       padding: 1rem 2rem;
       border: none;
       border-radius: 50px;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
       transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -192,6 +202,11 @@
   </p>
   
   <script>
+    const bgImg = new Image();
+    bgImg.src = 'assets/background.jpeg';
+    bgImg.onload = () => {
+      document.body.classList.add('image-loaded');
+    };
     let seconds = 10;
     const countdownEl = document.getElementById('countdown');
     const button = document.getElementById('redirectBtn');
