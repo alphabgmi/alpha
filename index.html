@@ -145,6 +145,18 @@
       box-shadow: 0 0 20px #1ae62b, 0 0 30px #06e87e;
     }
 
+    .fade-char {
+      opacity: 0;
+      animation: fadeIn 0.3s ease forwards;
+      display: inline-block;
+      white-space: pre; /* ← this keeps space formatting */
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
     #countdown-text {
       font-size: 1.1rem;
       margin-top: 1rem;
@@ -214,22 +226,30 @@
   let lineIndex = 0;
 
   function typeLine(line, index, callback) {
-    const li = document.createElement("li");
-    ul.appendChild(li);
-    let charIndex = 0;
+  const li = document.createElement("li");
+  ul.appendChild(li);
 
-    const typeChar = () => {
-      if (charIndex < line.length) {
-        li.textContent += line.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeChar, 3);
-      } else if (callback) {
-        setTimeout(callback, 35);
-      }
-    };
+  const segments = (typeof Intl !== "undefined" && Intl.Segmenter)
+    ? Array.from(new Intl.Segmenter().segment(line), s => s.segment)
+    : Array.from(line);
 
-    typeChar();
-  }
+  let charIndex = 0;
+
+  const typeChar = () => {
+    if (charIndex < segments.length) {
+      const span = document.createElement("span");
+      span.textContent = segments[charIndex];
+      span.classList.add("fade-char");
+      li.appendChild(span);
+      charIndex++;
+      setTimeout(typeChar, 3);
+    } else if (callback) {
+      setTimeout(callback, 35);
+    }
+  };
+
+  typeChar();
+}
 
   function startTypingLines() {
     if (lineIndex < lines.length) {
