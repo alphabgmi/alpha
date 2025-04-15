@@ -19,6 +19,7 @@
       box-sizing: border-box;
     }
 
+
     body {
       font-family: 'Orbitron', sans-serif;
       color: #fff;
@@ -26,12 +27,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       text-align: center;
-      padding: 2rem;
+      padding: 0.6rem 1.5rem 0 1.5rem; 
       position: relative;
-      overflow: hidden;
+      overflow-y: auto;
+      overscroll-behavior: auto;
+      touch-action: auto;
     }
+
+
+
 
     body::before {
       content: "";
@@ -162,13 +168,14 @@
   <p>Buy <strong>BGMI / PUBG accounts</strong> at best price.  
     Safe, fast delivery & verified accounts. No scam, no tension 💯</p>
 
-  <ul>
-    <li>✅ Full Access (Email + Social)</li>
-    <li>💎 Rare Skins | RP 100 | Mythic Outfits</li>
-    <li>🔥 High KD Accounts Available</li>
-    <li>📱 Instant Delivery on WhatsApp</li>
-    <li>🛡️ Reliable Seller | Safe Payment</li>
-  </ul>
+    <ul id="features">
+      <li>✅ Full Access (Email + Social)</li>
+      <li>💎 Rare Skins | RP 100 | Mythic Outfits</li>
+      <li>🔥 High KD Accounts Available</li>
+      <li>📱 Instant Delivery on WhatsApp</li>
+      <li>🛡️ Reliable Seller | Safe Payment</li>
+    </ul>
+    
 
 
   <p id="countdown-text"> Limited stock Available, join under <span id="countdown">10</span> seconds...</p>
@@ -189,9 +196,51 @@
     }, 1000);
 
     button.addEventListener('click', () => {
-      clearInterval(interval); // stop auto-redirect if user clicks manually
+      clearInterval(interval);
       window.location.href = redirectLink;
     });
+
+    const lines = [
+    "✅ Full Access (Email + Social)",
+    "💎 Rare Skins | RP 100 | Mythic Outfits",
+    "🔥 High KD Accounts Available",
+    "📱 Instant Delivery on WhatsApp",
+    "🛡️ Reliable Seller | Safe Payment"
+  ];
+
+  const ul = document.getElementById("features");
+  ul.innerHTML = "";
+
+  let lineIndex = 0;
+
+  function typeLine(line, index, callback) {
+    const li = document.createElement("li");
+    ul.appendChild(li);
+    let charIndex = 0;
+
+    const typeChar = () => {
+      if (charIndex < line.length) {
+        li.textContent += line.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeChar, 25);
+      } else if (callback) {
+        setTimeout(callback, 150);
+      }
+    };
+
+    typeChar();
+  }
+
+  function startTypingLines() {
+    if (lineIndex < lines.length) {
+      typeLine(lines[lineIndex], lineIndex, () => {
+        lineIndex++;
+        startTypingLines();
+      });
+    }
+  }
+
+  startTypingLines();
   </script>
 </body>
 </html>
