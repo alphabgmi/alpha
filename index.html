@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Official Alpha BGMI Store" />
+    <meta property="og:description" content="India's Most Trusted BGMI Store, Since 2019." />
+    <meta property="og:url" content="https://alphabgmi.github.io/alpha/" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="India's Most Trusted BGMI Store, Since 2019." />
+    <meta name="title" content="Official Alpha BGMI Store" />
+    <title>Alpha BGMI Store</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/alphabgmi/alpha/main/assets/logo.png" type="image/png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('assets/background.jpeg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(6px) brightness(0.6);
+      z-index: -1;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: #ffe100;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      justify-content: center;
+      animation: red-glow 2s infinite ease-in-out;
+      text-shadow:
+        0 0 5px #ff0000,
+        0 0 10px #ff0000,
+        0 0 20px #ff3300,
+        0 0 40px #ff3300,
+        0 0 80px #ff0000,
+        0 0 100px #ff0000;
+    }
+
+    @keyframes red-glow {
+      0% {
+        text-shadow:
+          0 0 5px #ff0000,
+          0 0 10px #ff0000,
+          0 0 20px #ff3300,
+          0 0 40px #ff3300,
+          0 0 80px #ff0000,
+          0 0 100px #ff0000;
+      }
+      50% {
+        text-shadow:
+          0 0 10px #ff1a1a,
+          0 0 20px #ff1a1a,
+          0 0 40px #ff4d4d,
+          0 0 60px #ff4d4d,
+          0 0 100px #ff0000,
+          0 0 150px #ff0000;
+      }
+      100% {
+        text-shadow:
+          0 0 5px #ff0000,
+          0 0 10px #ff0000,
+          0 0 20px #ff3300,
+          0 0 40px #ff3300,
+          0 0 80px #ff0000,
+          0 0 100px #ff0000;
+      }
+    }
+
+    h1 img {
+      width: 120px;
+      height: 120px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    ul li {
+      margin: 0.5rem 0;
+    }
+
+    .btn {
+      background: #22ff00;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    }
+
+    .btn:hover {
+      background: #11ff00;
+      box-shadow: 0 0 20px #1ae62b, 0 0 30px #06e87e;
+    }
+
+    #countdown-text {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      color: #ffea00;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    <img src="assets/logo.png" alt="Alpha Logo" />
+    Alpha BGMI Store
+    <img src="assets/logo.png" alt="Alpha Logo" />
+  </h1>
+
+  <p>Buy <strong>BGMI / PUBG accounts</strong> at best price.  
+    Safe, fast delivery & verified accounts. No scam, no tension 💯</p>
+
+  <ul>
+    <li>✅ Full Access (Email + Social)</li>
+    <li>💎 Rare Skins | RP 100 | Mythic Outfits</li>
+    <li>🔥 High KD Accounts Available</li>
+    <li>📱 Instant Delivery on WhatsApp</li>
+    <li>🛡️ Reliable Seller | Safe Payment</li>
+  </ul>
+
+  <button class="btn" id="redirectBtn">
+    💬 Tap to join on WhatsApp
+  </button>
+
+  <p id="countdown-text"> Limited stock Available, join under <span id="countdown">10</span> seconds...</p>
+
+  <script>
+    let seconds = 10;
+    const countdownEl = document.getElementById('countdown');
+    const button = document.getElementById('redirectBtn');
+    const redirectLink = 'https://chat.whatsapp.com/FKfNrkGNCf2FicUyVft2NG';
+
+    const interval = setInterval(() => {
+      seconds--;
+      countdownEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(interval);
+        window.location.href = redirectLink;
+      }
+    }, 1000);
+
+    button.addEventListener('click', () => {
+      clearInterval(interval); // stop auto-redirect if user clicks manually
+      window.location.href = redirectLink;
+    });
+  </script>
+</body>
+</html>
